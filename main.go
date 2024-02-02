@@ -13,7 +13,7 @@ func main() {
 	}
 	url := os.Args[1]
 
-	scrapingRawResult, err := scrapeJunniRaw(url)
+	scrapingRawResult, err := ScrapeJunniRaw(url)
 	if err != nil {
 		panic(err)
 	}
@@ -28,10 +28,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	os.WriteFile("scraping_raw_result.json", rawJSON, 0644)
+	os.WriteFile("scraping_raw_result.json", rawJSON, 0o644)
 	resultJSON, err := json.MarshalIndent(scrapingResult, "", "  ")
 	if err != nil {
 		panic(err)
 	}
-	os.WriteFile("scraping_result.json", resultJSON, 0644)
+	os.WriteFile("scraping_result.json", resultJSON, 0o644)
 }

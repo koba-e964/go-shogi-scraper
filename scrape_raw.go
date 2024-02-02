@@ -22,7 +22,7 @@ type JunniScrapingRawResult struct {
 }
 
 // Ref: https://qiita.com/ichi_zamurai/items/91fc8bbd7dfdf7f0447f
-func scrapeJunniRaw(url string) (*JunniScrapingRawResult, error) {
+func ScrapeJunniRaw(url string) (*JunniScrapingRawResult, error) {
 	scrapingResult := JunniScrapingRawResult{}
 	scrapingResult.URL = url
 	res, err := http.Get(url)

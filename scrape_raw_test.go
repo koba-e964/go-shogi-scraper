@@ -10,7 +10,7 @@ import (
 func TestScrapeJunniRaw0(t *testing.T) {
 	url := "https://web.archive.org/web/20240201014844if_/https://www.shogi.or.jp/match/junni/2023/82a/index.html"
 
-	result, err := scrapeJunniRaw(url)
+	result, err := ScrapeJunniRaw(url)
 	if assert.NoError(t, err) {
 		assert.Equal(t, url, result.URL)
 		assert.Equal(t, "第82期名人戦・順位戦　Ａ級", result.Name)
@@ -36,7 +36,7 @@ func TestScrapeJunniRaw0(t *testing.T) {
 func TestScrapeJunniRaw1(t *testing.T) {
 	url := "https://web.archive.org/web/20240119232150if_/https://www.shogi.or.jp/match/junni/2023/82c1/index.html"
 
-	result, err := scrapeJunniRaw(url)
+	result, err := ScrapeJunniRaw(url)
 	if assert.NoError(t, err) {
 		assert.Equal(t, url, result.URL)
 		assert.Equal(t, "第82期名人戦・順位戦　Ｃ級１組", result.Name)

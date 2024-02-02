@@ -78,7 +78,7 @@ type JunniScrapingResult struct {
 }
 
 func ScrapeJunni(url string) (*JunniScrapingResult, error) {
-	raw, err := scrapeJunniRaw(url)
+	raw, err := ScrapeJunniRaw(url)
 	if err != nil {
 		return nil, err
 	}
