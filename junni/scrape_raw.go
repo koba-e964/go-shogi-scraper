@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/saintfish/chardet"
@@ -34,6 +35,7 @@ func ScrapeJunniRaw(url string) (*JunniScrapingRawResult, error) {
 	if err != nil {
 		return nil, err
 	}
+	scrapingResult.RetrievalTime = time.Now().UTC().Format(time.RFC3339)
 
 	sha256sum := sha256.Sum256(buffer)
 	scrapingResult.HashAlgorithm = "sha256"

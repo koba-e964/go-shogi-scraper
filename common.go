@@ -1,6 +1,7 @@
 package scraper
 
 type Player struct {
+	Kind string `json:"kind"` // "pro" or "lady"
 	ID   int    `json:"id,omitempty"`
 	Name string `json:"name"`
 }
