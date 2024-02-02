@@ -60,11 +60,19 @@ func scrapeJunniRaw(url string) (*JunniScrapingRawResult, error) {
 			s.Find("tr").Each(func(x int, s *goquery.Selection) {
 				data := [][]string{}
 				s.Find("td").Each(func(x int, s *goquery.Selection) {
+					currentCell := []string{}
+					if s.HasClass("rankdown1") {
+						currentCell = append(currentCell, "rankdown1")
+					}
+					if s.HasClass("rankdown2") {
+						currentCell = append(currentCell, "rankdown2")
+					}
 					html, err := s.Html()
 					if err != nil {
 						panic(err)
 					}
-					data = append(data, strings.Split(html, "<br/>"))
+					currentCell = append(currentCell, strings.Split(html, "<br/>")...)
+					data = append(data, currentCell)
 				})
 				scrapingResult.Table = append(scrapingResult.Table, data)
 			})
