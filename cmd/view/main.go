@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+
+	"github.com/koba-e964/go-shogi-scraper/junni"
 )
 
 func main() {
@@ -13,11 +15,11 @@ func main() {
 	}
 	url := os.Args[1]
 
-	scrapingRawResult, err := ScrapeJunniRaw(url)
+	scrapingRawResult, err := junni.ScrapeJunniRaw(url)
 	if err != nil {
 		panic(err)
 	}
-	scrapingResult, err := ParseRawJunni(scrapingRawResult)
+	scrapingResult, err := junni.ParseRawJunni(scrapingRawResult)
 	if err != nil {
 		panic(err)
 	}

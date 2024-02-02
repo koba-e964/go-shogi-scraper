@@ -1,8 +1,10 @@
-package main
+package junni
 
 import (
 	"fmt"
 	"sort"
+
+	scraper "github.com/koba-e964/go-shogi-scraper"
 )
 
 type nameIdentifier struct {
@@ -36,11 +38,6 @@ func (n *nameIdentifier) getIndex(shortName string) int {
 	return -1
 }
 
-type Player struct {
-	ID   int    `json:"id,omitempty"`
-	Name string `json:"name"`
-}
-
 type Result struct {
 	Index1        int    `json:"index1"`
 	Index2        int    `json:"index2"`
@@ -68,13 +65,13 @@ func (r results) Less(i, j int) bool {
 }
 
 type JunniScrapingResult struct {
-	URL           string   `json:"url"`
-	RetrievalTime string   `json:"retrieval_time"`
-	Name          string   `json:"name"`
-	HashAlgorithm string   `json:"hash_algorithm"`
-	Hash          []byte   `json:"hash"`
-	Players       []Player `json:"players"`
-	Results       []Result `json:"results"`
+	URL           string           `json:"url"`
+	RetrievalTime string           `json:"retrieval_time"`
+	Name          string           `json:"name"`
+	HashAlgorithm string           `json:"hash_algorithm"`
+	Hash          []byte           `json:"hash"`
+	Players       []scraper.Player `json:"players"`
+	Results       []Result         `json:"results"`
 }
 
 func ScrapeJunni(url string) (*JunniScrapingResult, error) {
@@ -93,11 +90,11 @@ func ParseRawJunni(raw *JunniScrapingRawResult) (*JunniScrapingResult, error) {
 	result.Name = raw.Name
 	result.HashAlgorithm = raw.HashAlgorithm
 	result.Hash = raw.Hash
-	result.Players = make([]Player, 0, len(raw.Table))
+	result.Players = make([]scraper.Player, 0, len(raw.Table))
 	names := make([]string, 0, len(raw.Table))
 	for _, row := range raw.Table {
 		if len(row) >= 2 {
-			player := Player{ID: 0, Name: row[2][0]}
+			player := scraper.Player{ID: 0, Name: row[2][0]}
 			result.Players = append(result.Players, player)
 			names = append(names, player.Name)
 		}
