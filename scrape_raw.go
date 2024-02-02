@@ -13,11 +13,12 @@ import (
 )
 
 type JunniScrapingRawResult struct {
-	URL           string
-	Name          string
-	HashAlgorithm string
-	Hash          []byte
-	Table         [][][]string
+	URL           string       `json:"url"`
+	RetrievalTime string       `json:"retrieval_time"`
+	Name          string       `json:"name"`
+	HashAlgorithm string       `json:"hash_algorithm"`
+	Hash          []byte       `json:"hash"`
+	Table         [][][]string `json:"table"`
 }
 
 // Ref: https://qiita.com/ichi_zamurai/items/91fc8bbd7dfdf7f0447f
@@ -71,7 +72,12 @@ func scrapeJunniRaw(url string) (*JunniScrapingRawResult, error) {
 					if err != nil {
 						panic(err)
 					}
-					currentCell = append(currentCell, strings.Split(html, "<br/>")...)
+					split := strings.Split(html, "<br/>")
+					for i := range split {
+						// trim space characters
+						split[i] = strings.TrimSpace(split[i])
+					}
+					currentCell = append(currentCell, split...)
 					data = append(data, currentCell)
 				})
 				scrapingResult.Table = append(scrapingResult.Table, data)
