@@ -8,7 +8,8 @@ type Player struct {
 
 type PlayerInfo struct {
 	ID         int    `json:"id"`
-	Name       string `json:"name"`
+	NameJP     string `json:"name_jp"`
+	NameEN     string `json:"name_en"`
 	URL        string `json:"url"`
 	Birthday   string `json:"birthday"`
 	Birthplace string `json:"birthplace"`

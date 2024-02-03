@@ -3,7 +3,6 @@ package players
 import (
 	"bytes"
 	"crypto/sha256"
-	"fmt"
 	"io"
 	"net/http"
 	"regexp"
@@ -82,7 +81,6 @@ func ScrapePlayerList(url string) (*PlayerList, error) {
 			return
 		}
 		name := s.Text()
-		fmt.Println(href, name)
 		if playerInfoURL.MatchString(href) {
 			kind := playerInfoURL.FindStringSubmatch(href)[1]
 			id, err := strconv.Atoi(playerInfoURL.FindStringSubmatch(href)[2])
