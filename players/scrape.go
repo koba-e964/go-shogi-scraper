@@ -28,6 +28,14 @@ type PlayerList struct {
 	Players       []scraper.Player `json:"players"`
 }
 
+func (p *PlayerList) GetURL() string {
+	return p.URL
+}
+
+func (p *PlayerList) GetRetrievalTime() string {
+	return p.RetrievalTime
+}
+
 type players []scraper.Player
 
 func (p players) Len() int      { return len(p) }

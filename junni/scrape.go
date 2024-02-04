@@ -74,6 +74,14 @@ type JunniScrapingResult struct {
 	Results       []Result         `json:"results"`
 }
 
+func (j *JunniScrapingResult) GetURL() string {
+	return j.URL
+}
+
+func (j *JunniScrapingResult) GetRetrievalTime() string {
+	return j.RetrievalTime
+}
+
 func ScrapeJunni(url string) (*JunniScrapingResult, error) {
 	raw, err := ScrapeJunniRaw(url)
 	if err != nil {

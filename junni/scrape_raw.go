@@ -22,6 +22,14 @@ type JunniScrapingRawResult struct {
 	Table         [][][]string `json:"table"`
 }
 
+func (j *JunniScrapingRawResult) GetURL() string {
+	return j.URL
+}
+
+func (j *JunniScrapingRawResult) GetRetrievalTime() string {
+	return j.RetrievalTime
+}
+
 // Ref: https://qiita.com/ichi_zamurai/items/91fc8bbd7dfdf7f0447f
 func ScrapeJunniRaw(url string) (*JunniScrapingRawResult, error) {
 	scrapingResult := JunniScrapingRawResult{}

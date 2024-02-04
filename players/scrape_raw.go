@@ -26,6 +26,14 @@ type PlayerInfoRaw struct {
 	MentorName    string `json:"mentor_name"`
 }
 
+func (p *PlayerInfoRaw) GetURL() string {
+	return p.URL
+}
+
+func (p *PlayerInfoRaw) GetRetrievalTime() string {
+	return p.RetrievalTime
+}
+
 func ScrapePlayerInfoRaw(url string, player *scraper.Player, playersList *PlayerList) (*PlayerInfoRaw, error) {
 	scrapingResult := PlayerInfoRaw{}
 
